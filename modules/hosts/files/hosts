@@ -12,9 +12,17 @@
 #
 
 127.0.0.1       localhost
-192.168.1.12    titan.steviedons.com titan
-192.168.1.20    calisto.steviedons.com calisto
+192.168.1.137    titan.steviedons.com titan
+192.168.1.20    phobos.steviedons.com phobos
 192.168.1.15	raspbmc.steviedons.com raspbmc
+192.168.1.243           europa.steviedons.com europa
+192.168.1.244           metis.steviedons.com metis
+192.168.1.247           rhce-1
+192.168.1.248           rhce-2
+192.168.1.200           titan
+192.168.1.250           r1
+192.168.1.253           home-sw
+io.steviedons.com       io
  
 # special IPv6 addresses
 ::1             localhost ipv6-localhost ipv6-loopback

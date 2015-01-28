@@ -1,4 +1,4 @@
-node 'calisto' {
+node 'phobos' {
 	file { '/etc/motd':
 		content => "This system is managed by Puppet, have fun........\n",
 	}
@@ -8,7 +8,7 @@ node 'calisto' {
 	ssh_authorized_key { 'steve_ssh':
 		user => 'steve',
 		type => 'rsa',
-		key => 'AAAAB3NzaC1yc2EAAAADAQABAAABAQC4xcnE3ASezAqYwqVd/E3sZse94OnjMESOdDdj1vRgGQjL7jWUDxTnN5dJqTqpG8kYZD/vj+VgSQrrnJWvjMHuS+w4aeh7ZLMHzNGOAInzSnyYj89dHNy9tpuzNSNRARuyxaKbI+75u/WkoWcLzjN9eaZpSkD67wX/zX7gE+QdkiKZKL/Cw8yBDflNfo6nJ8cg3J9QJxCKNVZxf9Xoqp9MsAXIsrlKyzoDkRxbY3OBZsVObW7MPexCsbwE9QDP2uJzwLr6rzB5fNJF2QeQBEtR/Q1vKJtWpj7IeZ9NxwosJNv80cICxzeFlh6SaMEfAG9L3f78HgJrjwzISgUxIRGp',
+		key => 'AAAAB3NzaC1yc2EAAAADAQABAAABAQCkP+zxhcAziU8IOIGlZ77dqlqKZSwXajKQCL13M41yqfUdKWi36my9tF9OrELbHgppaIH0IhxuCawtW2WVPl3TneSBAMkXZ/7nKdvYI2iqYZzMUQ6PXivvQ9xvaE3TojfWFE2iZXYy6PxZkfyjtN4z9FRaST6k2AKOpA4lU/Yw0awTbXvHjUrlePi5ahJ4jvjNyUfCF39nuHS++k7q6NG8+oKz66v33z9Dywcim8/G4eMZUmMiFCcp+UsvIJkxeJAiys9qN9urWPYvpQNisY/IJtTT4LCQEj8ZOTPJ2DdfhoFIST/DhakLfM1XQbgrgHNOiwq8CJhiLEkBxjK1DZIl ',
 	}
 	cron { 'Back up system':
     		command => 'rsync -az --exclude-from=/home/steve/exclude_file.txt / /media/backup/calisto-backup',
@@ -16,37 +16,26 @@ node 'calisto' {
 		hour => '3',
     		minute  => '00',
   	}
-        cron { 'Set up the puppet crontab':
-                command => '/usr/local/bin/pull-updates',
-                user => steve,
-                minute  => '10',
-        }
-	include squid
 	include hosts
 	include resolv
 }
-node 'titan' {
+node 'europa' {
         file { '/etc/motd':
                 content => "This system is managed by Puppet, have fun........\n",
         }
-#	package { 'git':
-#		ensure => installed,
-#	}
+	package { 'git':
+		ensure => installed,
+	}
         cron { 'Back up system':
                 command => 'rsync -az --exclude-from=/home/steve/exclude_file.txt / /media/backup/titan-backup/manjaro',
 		user => root,
 		hour => '20',
                 minute  => '00',
         }
-	cron { 'Set up the puppet crontab':
-                command => '/usr/local/bin/pull-updates',
-		user => steve,
-                minute  => '10',
-        }
 	include hosts
 	include resolv
 }
-node 'raspbmc' {
+node 'metis' {
         file { '/etc/motd':
                 content => "This system is managed by Puppet, have fun........\n",
         }
@@ -61,15 +50,10 @@ node 'raspbmc' {
 		shell => '/bin/bash',
 		gid => 'adm',
 	}
-        cron { 'Set up the puppet crontab':
-                command => '/usr/local/bin/pull-updates',
-                user => git,
-                minute  => '10',
-        }
         ssh_authorized_key { 'steve_ssh':
                 user => 'steve',
                 type => 'rsa',
-                key => 'AAAAB3NzaC1yc2EAAAADAQABAAABAQC4xcnE3ASezAqYwqVd/E3sZse94OnjMESOdDdj1vRgGQjL7jWUDxTnN5dJqTqpG8kYZD/vj+VgSQrrnJWvjMHuS+w4aeh7ZLMHzNGOAInzSnyYj89dHNy9tpuzNSNRARuyxaKbI+75u/WkoWcLzjN9eaZpSkD67wX/zX7gE+QdkiKZKL/Cw8yBDflNfo6nJ8cg3J9QJxCKNVZxf9Xoqp9MsAXIsrlKyzoDkRxbY3OBZsVObW7MPexCsbwE9QDP2uJzwLr6rzB5fNJF2QeQBEtR/Q1vKJtWpj7IeZ9NxwosJNv80cICxzeFlh6SaMEfAG9L3f78HgJrjwzISgUxIRGp',
+                key => 'AAAAB3NzaC1yc2EAAAADAQABAAABAQCkP+zxhcAziU8IOIGlZ77dqlqKZSwXajKQCL13M41yqfUdKWi36my9tF9OrELbHgppaIH0IhxuCawtW2WVPl3TneSBAMkXZ/7nKdvYI2iqYZzMUQ6PXivvQ9xvaE3TojfWFE2iZXYy6PxZkfyjtN4z9FRaST6k2AKOpA4lU/Yw0awTbXvHjUrlePi5ahJ4jvjNyUfCF39nuHS++k7q6NG8+oKz66v33z9Dywcim8/G4eMZUmMiFCcp+UsvIJkxeJAiys9qN9urWPYvpQNisY/IJtTT4LCQEj8ZOTPJ2DdfhoFIST/DhakLfM1XQbgrgHNOiwq8CJhiLEkBxjK1DZIl ',
         }
         include hosts
         include resolv
