@@ -8,16 +8,16 @@ class ssh::config($sshd_config_source = "puppet:///modules/ssh/etc/ssh/sshd_conf
 #    notify  => Service["ssh"],
 #  }
   file { "/home/steve/.ssh/id_rsa":
-    owner   => "root",
-    group   => "root",
+    owner   => "steve",
+    group   => "steve",
     mode    => 0600,
     source  => "puppet:///modules/ssh/ssh_host_rsa_key",
     require => Class["ssh::install"],
     notify  => Service["ssh"],
   }
   file { "/home/steve/.ssh/id_rsa.pub":
-    owner   => "root",
-    group   => "root",
+    owner   => "steve",
+    group   => "steve",
     mode    => 0644,
     source  => "puppet:///modules/ssh/ssh_host_rsa_key.pub",
     require => Class["ssh::install"],
