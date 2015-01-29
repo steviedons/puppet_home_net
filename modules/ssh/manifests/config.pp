@@ -1,18 +1,3 @@
-class ssh::install {
-  package { "ssh":
-    ensure => present,
-  }
-}
-
-class ssh::service {
-  service { "ssh":
-    ensure     => running,
-    enable     => true,
-    hasrestart => true,
-    require    => Class["ssh::install"],
-  }
-}
-
 class ssh::config($sshd_config_source = "puppet:///modules/ssh/etc/ssh/sshd_config") {
 # file { "/etc/ssh/sshd_config":
 #  owner   => "root",
