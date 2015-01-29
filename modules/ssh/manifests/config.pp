@@ -13,7 +13,7 @@ class ssh::config($sshd_config_source = "puppet:///modules/ssh/etc/ssh/sshd_conf
     mode    => 0600,
     source  => "puppet:///modules/ssh/ssh_host_rsa_key",
     require => Class["ssh::install"],
-    notify  => Service["ssh"],
+    notify  => Service["sshd"],
   }
   file { "/home/steve/.ssh/id_rsa.pub":
     owner   => "steve",
@@ -21,7 +21,7 @@ class ssh::config($sshd_config_source = "puppet:///modules/ssh/etc/ssh/sshd_conf
     mode    => 0644,
     source  => "puppet:///modules/ssh/ssh_host_rsa_key.pub",
     require => Class["ssh::install"],
-    notify  => Service["ssh"],
+    notify  => Service["sshd"],
   }
     ssh_authorized_key { 'steve_ssh':
       user => 'steve',
