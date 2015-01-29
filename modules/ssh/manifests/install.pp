@@ -1,5 +1,5 @@
 class ssh::install {
-  package { "sshd":
+  package { "openssh-server":
     ensure => present,
   }
 }
