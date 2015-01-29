@@ -1,5 +1,5 @@
 class ssh::service {
-  service { "ssh":
+  service { "sshd":
     ensure     => running,
     enable     => true,
     hasrestart => true,
