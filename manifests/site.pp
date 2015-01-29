@@ -1,3 +1,5 @@
+# Main init.pp for home_net
+
 class base {
 	file { '/etc/motd':
                 content => "This system is managed by Puppet, have fun........\n",
@@ -10,13 +12,14 @@ class base {
                 type => 'rsa',
                 key => 'AAAAB3NzaC1yc2EAAAADAQABAAABAQC1Qumt9tDkO0EYLwfb1x/HXFHG+CPSfsAOnOItZQ4JtRYozoZI1408deSOUfLp4P14aBOaOj3FclPYMBYJS5Kzoem59v3ycRspS0cZVK2Zsq6z2vRcodUJ/8nNPykd1zGlftFzFXiQ9/RyDV/TGwRqmhHiIJE7gPiMBU7ihPCOFh+h8TYDvxoln+yyBpzOWj2WpZ8DwIfeWLZG3NlEeKScpoBtIz206sFcZ6cn2goYbQQGGVErIs/gBV6W3gi4yOybtxnX5CYQHCTI4d9i0NL000Oo5aw6GuHbtNDk2dt1cCj8QWMSfSO9qasP9qBwy6afG+PZOGERy/WoSLgxpZi/',
         }
-        cron { 'Back up system':
-                command => 'rsync -az --exclude-from=/home/steve/exclude_file.txt / /media/backup/calisto-backup',
-                user => root,
-                hour => '3',
-                minute  => '00',
-        }
-}
+# Need to figure out a better backup scheme       
+# cron { 'Back up system':
+#               command => 'rsync -az --exclude-from=/home/steve/exclude_file.txt / /media/backup/calisto-backup',
+#                user => root,
+#               hour => '3',
+#                minute  => '00',
+#        }
+#}
 
 
 node 'phobos.steviedons.com' {
@@ -31,7 +34,7 @@ node 'europa.steviedons.com' {
 	include squid
 }
 node 'metis.steviedons.com' {
-        include base
+  include base
 	include hosts
-        include resolv
+  include resolv
 }
