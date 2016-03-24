@@ -18,6 +18,7 @@ class baseconfig {
     home        => '/home/steve',
     managehome  => true,
     shell       => '/bin/fish',
+    password   => '$6$9oEtZVi1$MEHcx4PbHsu81cDb2EJPElBOMHDQkIg4Bjn.hifQ8aFVnT9tFrVqbvJXl6DJ5ncJC0m5wuzMf61u/qtDXmp291',
     require     => Package['fish'],
   }
 
