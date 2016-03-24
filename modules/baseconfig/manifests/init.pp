@@ -8,6 +8,10 @@ class baseconfig {
     ensure => present;
   }
 
+  file { '/etc/motd':
+    content => "This system is managed by Puppet, have fun........\n",
+  }
+
   user { 'steve':
     ensure      => present,
     comment     => 'Stephen Donovan',
