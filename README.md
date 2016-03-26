@@ -2,7 +2,7 @@
 Modules for home network setup and learning puppet, current modules (some of them are standard modules from the puppet forge:
 
 * apache
-* baseconfig
+* baseconfig - This is for setting up base user settings and packages
 * concat
 * firewalld
 * hosts
