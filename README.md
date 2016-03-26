@@ -1,4 +1,4 @@
-# puppet_home_net
+# Puppet Home Net
 Modules for home network setup and learning puppet, current modules (some of them are standard modules from the puppet forge:
 
 * apache
