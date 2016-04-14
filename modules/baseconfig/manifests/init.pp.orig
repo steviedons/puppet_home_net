@@ -11,7 +11,7 @@ class baseconfig {
   group { 'wheel':
     ensure => present,
   }
-
+<<<<<<< HEAD
   user { 'steve':
     ensure     => present,
     comment    => 'Stephen Donovan',
@@ -19,6 +19,15 @@ class baseconfig {
     groups     => ['wheel','docker'],
     password   => '$6$9oEtZVi1$MEHcx4PbHsu81cDb2EJPElBOMHDQkIg4Bjn.hifQ8aFVnT9tFrVqbvJXl6DJ5ncJC0m5wuzMf61u/qtDXmp291'
     managehome => true,
+=======
+
+  user { 'steve':
+    ensure      => present,
+    comment     => 'Stephen Donovan',
+    home        => '/home/steve',
+    groups      => 'wheel',
+    managehome  => true,
+>>>>>>> c8d54eb7370ced11dc0620d18bd6b36f55c65fe3
   }
 
   ssh_authorized_key { 'steve_ssh':
