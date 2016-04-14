@@ -5,13 +5,17 @@
 class baseconfig {
   
   package { ['epel-release', 'vim-enhanced', 'htop', 'tree', 'unzip', 'git', 'docker']:
-    ensure => present;
+    ensure => present,
   }
+
+  group { 'wheel':
+    ensure => present,
 
   user { 'steve':
     ensure      => present,
     comment     => 'Stephen Donovan',
     home        => '/home/steve',
+    groups      => 'wheel'
     managehome  => true,
   }
 
@@ -21,4 +25,12 @@ class baseconfig {
     key     => 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCY7dN61s6H57fYGV2THhvTzhi0xXQLd59UTSmKc8D+Vl7v7OzBFNL43VfdzsXk539ylo6jrWjeI4pmIL5oBRBIf/X57DW/c33TBYhePfEJC7XiQLibWpgo0dz4uoa0iFBGE10UymoNMsuGYIFnzXF0UXQ7LlT/f1rdZp3iv7P0B4rU5HtxLI30eAlXvG62ODxSXCn7xvsrkvR7PHC/LPxKe3vqQfwoQ2qg8F1jXbtNKQtQuDaT/PdvkjkhD/KM+YQH9sLuYyngaTSjbu6BMpMWaRwlvvM0byCbKd+gzhXJohENHm8+qsSjNjZjbyFUoyYthwBC8ER2WHLNe4tj2u9N steve@titan',
     require => User['steve'],
   }
+
+  service { 'yum-cron':
+    ensure     => running,
+    enable     => true,
+    hasrestart => true,
+    require    => Package['yum-cron'],
+  }
+
 }
