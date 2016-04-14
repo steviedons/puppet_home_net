@@ -12,10 +12,6 @@ class baseconfig {
     ensure => present,
   }
 
-  group {'docker':
-    ensure => present,
-  }
-
   user { 'steve':
     ensure     => present,
     comment    => 'Stephen Donovan',
